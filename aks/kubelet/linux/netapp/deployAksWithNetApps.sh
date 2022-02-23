@@ -39,7 +39,7 @@ az network vnet subnet create \
     --vnet-name $VNET_NAME \
     --name $SUBNET_NAME \
     --delegations "Microsoft.NetApp/volumes" \
-    --address-prefixes 10.0.0.0/28
+    --address-prefixes 10.241.0.0/28
 
 SUBNET_ID=$(az network vnet subnet show --resource-group $RG_NODE --vnet-name $VNET_NAME --name $SUBNET_NAME --query "id" -o tsv)
 
