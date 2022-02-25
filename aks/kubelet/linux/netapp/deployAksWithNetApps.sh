@@ -59,3 +59,31 @@ az netappfiles volume create \
     --allowed-clients "0.0.0.0/0" \
     --unix-read-write "true" \
     --has-root-access "true"
+
+# Enable 'ANFSDNAppliance' and 'AllowPoliciesOnBareMetal' feature (can take some minutes to be fully registered)
+az feature registration create --name ANFSDNAppliance --namespace Microsoft.NetApp
+az feature registration create --name AllowPoliciesOnBareMetal --namespace Microsoft.Network
+
+# Check if the 'state' is set to 'Registered'
+az feature registration show --name ANFSDNAppliance --provider-namespace Microsoft.NetApp
+az feature registration show --name AllowPoliciesOnBareMetal --provider-namespace Microsoft.Network
+
+VOLUME_NAME_2="vol2"
+UNIQUE_FILE_PATH_2="vol2" # Note that file path needs to be unique within all ANF Accounts
+az netappfiles volume create \
+    --resource-group $RG_NODE \
+    --location $REGION \
+    --account-name $NETAPP_NAME \
+    --pool-name $NETAPP_POOL \
+    --name $VOLUME_NAME_2 \
+    --service-level $SERVICE_LEVEL \
+    --vnet $VNET_ID \
+    --subnet $SUBNET_ID \
+    --network-features "Standard" \
+    --usage-threshold $VOLUME_SIZE_GiB \
+    --file-path $UNIQUE_FILE_PATH_2 \
+    --protocol-types "NFSv3" \
+    --rule-index 1 \
+    --allowed-clients "0.0.0.0/0" \
+    --unix-read-write "true" \
+    --has-root-access "true"
