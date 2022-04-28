@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: azurefile-csi-file
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: azurefile-csi
+  resources:
+    requests:
+      storage: 5Gi
