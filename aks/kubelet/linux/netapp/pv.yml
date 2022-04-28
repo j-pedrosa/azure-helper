@@ -1,7 +1,22 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pv-nfs
+  name: pv-nfs-v1
+spec:
+  capacity:
+    storage: 100Gi
+  accessModes:
+    - ReadWriteMany
+  mountOptions:
+    - vers=3
+  nfs:
+    server: 10.241.0.4
+    path: /vol1
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-nfs-v2
 spec:
   capacity:
     storage: 100Gi

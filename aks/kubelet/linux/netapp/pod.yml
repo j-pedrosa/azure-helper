@@ -1,7 +1,7 @@
 kind: Pod
 apiVersion: v1
 metadata:
-  name: nginx-nfs
+  name: nginx-nfs-v1
 spec:
   containers:
   - image: mcr.microsoft.com/oss/nginx/nginx:1.15.5-alpine
@@ -16,4 +16,24 @@ spec:
   volumes:
   - name: disk01
     persistentVolumeClaim:
-      claimName: pvc-nfs
+      claimName: pvc-nfs-v1
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: nginx-nfs-v2
+spec:
+  containers:
+  - image: mcr.microsoft.com/oss/nginx/nginx:1.15.5-alpine
+    name: nginx-nfs
+    command:
+    - "/bin/sh"
+    - "-c"
+    - while true; do echo $(date) >> /mnt/azure/outfile; sleep 1; done
+    volumeMounts:
+    - name: disk01
+      mountPath: /mnt/azure
+  volumes:
+  - name: disk01
+    persistentVolumeClaim:
+      claimName: pvc-nfs-v2
