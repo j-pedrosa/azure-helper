@@ -19,17 +19,6 @@ az storage share create \
   --name $ACI_PERS_SHARE_NAME \
   --account-name $ACI_PERS_STORAGE_ACCOUNT_NAME
 
-# Storage account name
-echo "The Storage account name is: $ACI_PERS_STORAGE_ACCOUNT_NAME"
-
-# Share name
-echo "The Share name of the Storage Account is: $ACI_PERS_SHARE_NAME"
-
-# Get Storage account key
-STORAGE_KEY=$(az storage account keys list --resource-group $RESOURCE_GROUP --account-name $ACI_PERS_STORAGE_ACCOUNT_NAME --query "[0].value" --output tsv)
-echo $STORAGE_KEY
-
-
 echo "Create ACI"
 az container create \
     --resource-group $RESOURCE_GROUP \
