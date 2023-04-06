@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox-hostpath
+  namespace: policy-test
+spec:
+  containers:
+  - image: busybox
+    name: busybox
+    command:
+    - "/bin/sleep"
+    - "3650"
+    volumeMounts:
+    - mountPath: /var/log
+      name: node-log
+  volumes:
+  - name: node-log
+    hostPath:
+      # directory location on host
+      path: /var/log
+      # this field is optional
+      type: Directory
