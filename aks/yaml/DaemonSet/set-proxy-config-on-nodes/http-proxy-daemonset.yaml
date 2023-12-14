@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: proxy-daemonset
+spec:
+  selector:
+    matchLabels:
+      app: proxy-daemonset
+  template:
+    metadata:
+      labels:
+        app: proxy-daemonset
+    spec:
+      containers:
+      - name: proxy-container
+        image: ubuntu:latest
+        volumeMounts:
+        - name: proxy-config-volume
+          mountPath: /etc/proxy-config
+        env:
+        - name: HTTP_PROXY
+          valueFrom:
+            configMapKeyRef:
+              name: proxy-config
+              key: http_proxy
+        - name: HTTPS_PROXY
+          valueFrom:
+            configMapKeyRef:
+              name: proxy-config
+              key: https_proxy
+        - name: NO_PROXY
+          valueFrom:
+            configMapKeyRef:
+              name: proxy-config
+              key: no_proxy
+      volumes:
+      - name: proxy-config-volume
+        configMap:
+          name: proxy-config
+      dnsPolicy: Default
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      serviceAccountName: default
+      securityContext:
+        fsGroup: 1000
+        runAsUser: 1000

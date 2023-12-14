@@ -1,5 +1,5 @@
 #Variables
-NAME="repo1"
+NAME="repo"
 RESOURCE_GROUP="aci-$NAME-rg"
 REGION="westeurope"
 ACI_NAME="aci-$NAME"
@@ -16,3 +16,7 @@ az container create \
     --ports 80 \
     --cpu 1 \
     --memory 2
+
+echo "Get the web app's fully qualified domain name"
+az container show --resource-group $RESOURCE_GROUP \
+  --name helloworld --query ipAddress.fqdn --output tsv

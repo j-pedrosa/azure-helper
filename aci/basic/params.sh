@@ -1,8 +1,8 @@
 #Global
-NAME="repo1"
-RESOURCE_GROUP="aci-with-fileshare-$NAME-rg"
+BASE_NAME=aci-basic
+NAME="repo"
+RESOURCE_GROUP="$BASE_NAME-$NAME-rg"
 REGION="westeurope"
 
-
 #ACI
-ACI_NAME="aci-with-fileshare-$NAME"
+ACI_NAME="$BASE_NAME-$NAME"
