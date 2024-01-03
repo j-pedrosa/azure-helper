@@ -1,0 +1,21 @@
+# Global Environment Variables
+PREFIX="aks-cni"
+RESOURCE_GROUP="${PREFIX}-rg"
+REGION="westeurope"
+
+# Cluster Environment Variables
+K8S_VERSION="1.27.7"
+PRIVATE_CLUSTER=false
+AKS_NAME="${PREFIX}"
+NETWORK_PLUGIN=azure
+SERVICE_CIDR="10.0.0.0/16"
+DNS_SERVICE_IP="10.0.0.10"
+NODE_COUNT="1"
+AKS_HAS_2ND_NODEPOOL=false
+AKS_USR_NP_NODE_COUNT="1"
+
+# Network Environment Variables
+VNET_NAME="${PREFIX}-vnet"
+SUBNET_NAME="${PREFIX}-subnet"
+VNET_PREFIXE="10.2.0.0/16"
+SUBNET_PREFIXE="10.2.0.0/23"
