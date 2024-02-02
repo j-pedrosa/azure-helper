@@ -1,0 +1,11 @@
+{
+    "httpProxy": "http://proxy-XX:8080/", 
+    "httpsProxy": "http://proxy-XX:8080/", 
+    "noProxy": [
+      ".ipreprod.local",
+      ".svc.cluster.local",
+      ".pcsprd.local",
+      ".iprod.local"
+    ],
+    "trustedCA": "BASE64"
+  }
