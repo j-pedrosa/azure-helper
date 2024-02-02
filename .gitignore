@@ -35,3 +35,9 @@ terraform.rc
 
 # Others
 .terraform.*
+
+# Sensitive files
+pull-secret.txt
+secretJSON.txt
+arospinfo.json
+params.sh
